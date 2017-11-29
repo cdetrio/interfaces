@@ -1,0 +1,64 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "id": "eth_getStorageAt",
+    "title": "eth_getStorageAt",
+    "description": "eth_getStorageAt JSON-RPC method request and response schema.",
+
+    "request": {
+      "id": "#request",
+      "allOf": [
+        { "$ref": "jsonrpc-request.json" },
+        { "$ref": "#/definitions/request-obj" }
+      ],
+      "definitions": {
+        "request-obj": {
+          "id": "#request-obj",
+          "properties": {
+            "method": {
+              "type": "string",
+              "enum": ["eth_getStorageAt"]
+            },
+            "params": {
+              "type": "array",
+              "items": [
+                {
+                  "type": "string",
+                  "description": "DATA, 32 Bytes - Hash of a block."
+                },
+								{
+								  "type": "string",
+                  "description": "QUANTITY- Integer position in the storage."
+								},
+                {
+                  "type": "string",
+                  "description": "QUANTITY|TAG - integer block number, or the string \"latest\", \"earliest\" or \"pending\""
+                }
+              ],
+              "minItems": 3,
+              "maxItems": 3
+            }
+          }
+        }
+      }
+    },
+
+
+    "response": {
+      "id": "#response",
+      "allOf": [
+        { "$ref": "jsonrpc-response.json" },
+        { "$ref": "#/definitions/response-obj" }
+      ],
+      "definitions": {
+        "response-obj": {
+          "id": "#response-obj",
+          "properties": {
+        		"result": {
+						  "type": "string"
+        		}
+        	}
+        }
+      }
+    }
+
+}

@@ -1,0 +1,45 @@
+{
+  "title" : "eth_getStorageAt",
+  "schema": {
+    "$ref": "../schemas/eth_getStorageAt.json"
+  },
+
+  "chainConfig" : {
+    "$ref": "../configs/bcRPC_API_Test.json"
+  },
+
+  "tests": [
+    {
+      "title": "eth_getStorageAt latest block with non-zero storage key",
+      "request" : {
+        "method" : "eth_getStorageAt",
+        "params" : ["0x6295ee1b4f6dd65047762f924ecd367c17eabf8f", "0x01", "latest"]
+      },
+      "expectedResponse" : {
+        "result": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffee"
+      },
+      "asserts": [
+        {
+          "description": "response has blockHeader hash",
+          "program": ".receivedResponse.result != null"
+        }
+      ]
+    },
+    {
+      "title": "eth_getStorageAt earliest block with zero storage key",
+      "request" : {
+        "method" : "eth_getStorageAt",
+        "params" : ["0x6295ee1b4f6dd65047762f924ecd367c17eabf8f", "0x01", "earliest"]
+      },
+      "expectedResponse" : {
+        "result": "0000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "asserts": [
+        {
+          "description": "response has blockHeader hash",
+          "program": ".receivedResponse.result != null"
+        }
+      ]
+    }
+  ]
+}

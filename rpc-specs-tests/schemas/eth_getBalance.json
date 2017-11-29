@@ -1,0 +1,58 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "id": "eth_getBalance",
+    "title": "eth_getBalance",
+    "description": "eth_getBalance JSON-RPC method request and response schema.",
+
+    "request": {
+      "id": "#request",
+      "allOf": [
+        { "$ref": "jsonrpc-request.json" },
+        { "$ref": "#/definitions/request-obj" }
+      ],
+      "definitions": {
+        "request-obj": {
+          "id": "#request-obj",
+          "properties": {
+            "method": {
+              "type": "string",
+              "enum": ["eth_getBalance"]
+            },
+            "params": {
+              "type": "array",
+              "items": [
+                {
+                  "type": "string",
+                  "description": "DATA, 32 Bytes - Account."
+                },
+                {
+                  "type": "string",
+                  "description": "QUANTITY|TAG - integer block number, or the string \"latest\", \"earliest\" or \"pending\""
+                }
+              ],
+              "minItems": 2,
+              "maxItems": 2
+            }
+          }
+        }
+      }
+    },
+    "response": {
+      "id": "#response",
+      "allOf": [
+        { "$ref": "jsonrpc-response.json" },
+        { "$ref": "#/definitions/response-obj" }
+      ],
+      "definitions": {
+        "response-obj": {
+          "id": "#response-obj",
+          "properties": {
+        		"result": {
+							"description": "QUANTITY",
+						  "type": "string"
+        		}
+        	}
+        }
+      }
+    }
+}

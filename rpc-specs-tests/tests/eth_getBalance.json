@@ -1,0 +1,29 @@
+{
+  "title" : "eth_getBalance",
+  "schema": {
+    "$ref": "../schemas/eth_getBalance.json"
+  },
+
+  "chainConfig" : {
+    "$ref": "../configs/bcRPC_API_Test.json"
+  },
+
+  "tests": [
+    {
+      "title": "eth_getBalance earliest block",
+      "request" : {
+        "method" : "eth_getBalance",
+        "params" : ["0xa94f5374fce5edbc8e2a8697c15331677e6ebf0b", "earliest"]
+      },
+      "expectedResponse" : {
+        "result": "09184e72a000"
+      },
+      "asserts": [
+        {
+          "description": "response valid",
+          "program": ".receivedResponse.result != null"
+        }
+      ]
+    }
+  ]
+}
